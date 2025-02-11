@@ -1,5 +1,3 @@
-**Updated `README.md` for `create_corpus.py` Script**
-
 ---
 
 # Pharmaceutical Corpus Builder
