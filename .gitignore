@@ -1,3 +1,5 @@
 /backup
 /corpus
 /Downloads
+/data/cleaned_file.xlsx
+.gitignore
