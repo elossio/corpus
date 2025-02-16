@@ -12,8 +12,8 @@ class TAP:
     """
 
     def __init__(self, origin: str, corpus_file: str,
-                 tap_file_in: str = "/home/evlossio/myprojects/corpus/DATA/medicamentos.tap",
-                 tap_file_out: str = "/home/evlossio/myprojects/corpus/backup/default_out.tap"):
+                 tap_file_in: str = "/home/evlossio/myprojects/corpus/data/medicamentos.tap",
+                 tap_file_out: str = "/home/evlossio/myprojects/corpus/data/default_out.tap"):
         """
         Initialize the TAP object with file paths.
 
@@ -98,6 +98,6 @@ if __name__ == "__main__":
     CORPUS_FILE = f"/home/evlossio/myprojects/corpus/{ORIGEM}_corpus.json"
     tap = TAP(origin=ORIGEM, 
               corpus_file=CORPUS_FILE, 
-              tap_file_in="/home/evlossio/myprojects/corpus/DATA/medicamentos.tap",
-              tap_file_out=f"/home/evlossio/myprojects/corpus/{ORIGEM}.tap")
+              tap_file_in="/home/evlossio/myprojects/corpus/data/medicamentos.tap",
+              tap_file_out=f"/home/evlossio/myprojects/corpus/data/{ORIGEM}.tap")
     tap.run_update()

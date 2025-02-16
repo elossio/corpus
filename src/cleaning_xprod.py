@@ -79,18 +79,15 @@ class Cleaner:
         
         The processing includes:
             1. Extracting dose, form, and recipient information into new columns.
-            2. Removing all patterns from 'DESCRIÇÃO' to create 'xprod_cleaned'.
-            3. Reordering columns so that 'xprod_cleaned' is the last column.
+            2. Removing all patterns from 'DESCRIÇÃO' to create a new column 'xprod_cleaned'.
+            3. Reordering columns so that 'xprod_cleaned' is the last one.
         """
-        # Extract patterns
-        self.df['dose'] = self.df['DESCRIÇÃO'].apply(
-            lambda x: self.extract_pattern(x, self.patterns['dose']))
-        self.df['form'] = self.df['DESCRIÇÃO'].apply(
-            lambda x: self.extract_pattern(x, self.patterns['form']))
-        self.df['recipient'] = self.df['DESCRIÇÃO'].apply(
-            lambda x: self.extract_pattern(x, self.patterns['recipient']))
 
-        # Remove all patterns and create 'xprod_cleaned'
+        # Extract patterns
+        for key in self.patterns.keys():
+            self.df[key] = self.df['DESCRIÇÃO'].apply(lambda x, pattern=self.patterns[key]: self.extract_pattern(x, pattern))
+
+        # Remove all patterns and create a new column 'xprod_cleaned'
         self.df['xprod_cleaned'] = self.df['DESCRIÇÃO'].apply(self.remove_patterns)
 
         # Reorder columns
@@ -123,7 +120,7 @@ class Cleaner:
         self.save()
 
 if __name__ == "__main__":
-    input_file = '/home/evlossio/myprojects/corpus/DATA/EANS_NAO_CRUZARAM.xlsx'
-    output_file = '/home/evlossio/myprojects/corpus/DATA/cleaned_file.xlsx'
+    input_file = '/home/evlossio/myprojects/corpus/data/EANS_NAO_CRUZARAM.xlsx'
+    output_file = '/home/evlossio/myprojects/corpus/data/cleaned_file.xlsx'
     cleaner = Cleaner(input_file, output_file)
     cleaner.run()
